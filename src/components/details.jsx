@@ -29,7 +29,7 @@ export default function Details() {
               <div id='description'>
                 <h4>Espécie: {data.species}</h4>
                 <p>Situação: {data.status}</p>
-                <Link to="/"  id='link'>Voltar</Link>
+                <Link to="/ryck-and-morty"  id='link'>Voltar</Link>
               </div>
             </Card>
         }  

@@ -23,7 +23,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<Main mainData={data} />} />
+        <Route path='/ryck-and-morty' element={<Main mainData={data} />} />
         <Route path="/details/:userId" element={<Details identifier={data} />} />
       </Routes>
     </BrowserRouter> 
