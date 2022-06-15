@@ -1,24 +1,32 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState, useEffect } from 'react';
+import { BrowserRouter, Routes, Route, useParams } from 'react-router-dom'
+import Main from './components/main'
+import { Details } from './components/details';
 
 function App() {
+  const [data, setData] = useState([])
+
+  useEffect(() => {
+    fetchData()
+  }, [])
+
+  async function fetchData() {
+    try{
+      const response = await fetch('https://rickandmortyapi.com/api/character');
+      const dataResp = await response.json();
+      setData(dataResp.results)
+
+    } catch(e) { console.log(e) }
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<Main mainData={data} />} />
+        <Route path="/details/:userId" element={<Details identifier={data} />} />
+      </Routes>
+    </BrowserRouter> 
   );
 }
 
